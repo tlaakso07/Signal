@@ -27,7 +27,7 @@ The core growth engine is defined by three pillars:
 
 | Node | Role |
 |---|---|
-| Executive Agent (SDK-Native) | Copy, voice, content calendars, brand compliance — 24/7 |
+| Executive Agent (SDK-Native) | Python Environment (`claude-sonnet-4-6`). Live API verified. Copy, voice, content calendars, brand compliance. |
 | Strategic Brainstorm Layer (Claude CoWork) | Strategy sessions, creative direction |
 | Lead AI Engineer (Claude Code) | GitHub repos, pipelines, Anti-Gravity Terminal — this is us |
 | Intelligence Scraper (Firecrawl) | Digital footprint + competitor scraping → Identity File |
@@ -98,7 +98,7 @@ Full intelligence file: [`The Brain/CLIENTS/BORED-N-BUZZED-INTELLIGENCE.md`](../
 | Location | 11516 124th Ave NE, Kirkland WA 98033 |
 | Website | https://borednbuzzed.com/ (Slated for Teardown) |
 | Tagline | "Stay One Puff Ahead" |
-| Status | Engine Finished. Identity v2.0 Locked. Pivoting to entirely new Custom Web Architecture. |
+| Status | Engine Finished, Tested, and Live. Identity v2.0 Locked. Active claude-sonnet-4-6 API credits verified. Pivoting to entirely new Custom Web Architecture. |
 
 **Brand snapshot:**
 - Positioning as a culture/lifestyle destination ("more than just a dispensary")

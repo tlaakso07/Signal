@@ -44,7 +44,7 @@ Claude Code is the **Lead AI Engineer** of Signal's execution stack. Responsibil
 
 ## The Tech Stack
 
-1. **Executive Agent (SDK-Native)** — owns copy, voice, content calendars, brand compliance
+1. **Executive Agent (SDK-Native)** — Python Virtual Environment running `claude-sonnet-4-6`. Owns copy, voice, content calendars, brand compliance. Verified with live credits.
 2. **Strategic Brainstorm Layer (Claude CoWork)** — strategy and creative direction
 3. **Lead AI Engineer (Claude Code)** — GitHub, pipelines, terminal execution — this is us
 4. **Intelligence Scraper (Firecrawl)** — digital footprint + competitor scraping

@@ -8,10 +8,17 @@
     --border: rgba(255, 255, 255, 0.1);
 }
 
+/* Base Restets & Cursor Removal for Desktop */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+}
+
+@media (pointer: fine) {
+    body, a, button {
+        cursor: none !important;
+    }
 }
 
 body {
@@ -21,65 +28,130 @@ body {
     line-height: 1.5;
     overflow-x: hidden;
     position: relative;
-    /* Create a deep dark gradient with forest green tones */
     background: linear-gradient(135deg, var(--navy) 0%, var(--forest) 150%);
     min-height: 100vh;
 }
 
-/* Authentic lifestyle photo background trick (blend mode) */
+/* Pre-load state for smooth init */
+body.is-loading .js-reveal {
+    opacity: 0;
+    transform: translateY(30px);
+}
+
+/* Background Lifestyle Photo */
 body::before {
     content: '';
     position: fixed;
     top: 0; left: 0; width: 100vw; height: 100vh;
-    /* High end cannabis lifestyle Unsplash placeholder */
     background-image: url('https://images.unsplash.com/photo-1596568359489-0aeec8f38bc7?q=80&w=1000&auto=format&fit=crop'); 
     background-size: cover;
     background-position: center;
     opacity: 0.15;
-    mix-blend-mode: luminosity; /* Prevents image colors from clashing with brand */
-    z-index: -2;
+    mix-blend-mode: luminosity;
+    z-index: -3;
     pointer-events: none;
 }
 
-/* Massive background typography styling -> The editorial lookbook feel */
-.massive-typography {
+/* Dynamic Interactive Glow Overlay */
+.bg-glow {
+    position: fixed;
+    top: 0; left: 0; 
+    width: 100vw; height: 100vh;
+    background: radial-gradient(circle at 50% 50%, rgba(30,90,53,0.4) 0%, transparent 60%);
+    z-index: -2;
+    pointer-events: none;
+    transform: translate(0, 0);
+    will-change: transform;
+}
+
+/* Custom Cursor Styles */
+.cursor-dot, .cursor-ring {
+    position: fixed;
+    top: 0; left: 0;
+    pointer-events: none;
+    z-index: 9999;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    transition: width 0.3s cubic-bezier(0.16, 1, 0.3, 1), height 0.3s cubic-bezier(0.16, 1, 0.3, 1), background 0.3s;
+    display: none; /* Hidden by default, activated via JS if pointer is fine */
+}
+
+@media (pointer: fine) {
+    .cursor-dot, .cursor-ring {
+        display: block;
+    }
+}
+
+.cursor-dot {
+    width: 6px;
+    height: 6px;
+    background-color: var(--white);
+}
+
+.cursor-ring {
+    width: 36px;
+    height: 36px;
+    border: 1px solid var(--gold);
+    transition: width 0.15s ease-out, height 0.15s ease-out;
+    will-change: transform, width, height;
+}
+
+.cursor-ring.cursor-hover {
+    width: 60px;
+    height: 60px;
+    background-color: rgba(248, 195, 0, 0.1);
+    border-color: rgba(248, 195, 0, 0.5);
+    mix-blend-mode: screen;
+}
+
+/* Kinetic Typography */
+.parallax-wrap {
     position: fixed;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+    z-index: -1;
+    pointer-events: none;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.massive-typography {
     font-size: clamp(8rem, 30vw, 25rem);
     font-weight: 900;
     letter-spacing: -0.05em;
-    color: rgba(255, 255, 255, 0.05); /* very subtle so it acts as background */
-    z-index: -1;
+    color: rgba(255, 255, 255, 0.05); /* very subtle */
     white-space: nowrap;
     text-transform: uppercase;
-    user-select: none;
-    pointer-events: none;
+    will-change: transform;
+    /* Transformation logic handled primarily via JS */
 }
 
+/* Content Layout */
 .content-wrapper {
-    max-width: 600px;
+    max-width: 650px;
     margin: 0 auto;
-    padding: 2rem 1.5rem 4rem;
+    padding: 4rem 1.5rem 6rem;
     position: relative;
     z-index: 1;
 }
 
 .masthead {
     text-align: center;
-    margin-bottom: 3rem;
+    margin-bottom: 5rem;
 }
 
 .brand-logo {
     width: 240px;
     max-width: 100%;
     margin-bottom: 2rem;
+    filter: drop-shadow(0 10px 20px rgba(0,0,0,0.3));
 }
 
 .hero-text {
     font-family: 'Playfair Display', serif;
-    font-size: 2.5rem;
+    font-size: 3rem;
     font-weight: 400;
     letter-spacing: -0.02em;
     margin-bottom: 0.5rem;
@@ -91,39 +163,57 @@ body::before {
 }
 
 .hero-subtext {
-    font-size: 0.95rem;
+    font-size: 1rem;
     color: rgba(255, 255, 255, 0.7);
     font-weight: 400;
+    letter-spacing: 0.02em;
 }
 
-/* Deals layout */
+/* Deals Anti-Grid */
 .deals-grid {
     display: flex;
     flex-direction: column;
-    gap: 1rem;
+    gap: 2.5rem; /* Wider gaps for editorial feel */
+}
+
+/* Reveal Animation Class */
+.js-reveal {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 1s cubic-bezier(0.16, 1, 0.3, 1), transform 1s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.js-reveal.is-visible {
+    opacity: 1;
+    transform: translateY(0);
 }
 
 .deal-card {
     background: var(--glass);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
     border: 1px solid var(--border);
-    border-radius: 4px;
-    padding: 1.5rem;
+    border-radius: 8px;
+    padding: 2.5rem 2rem;
     position: relative;
-    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), background 0.3s ease;
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), background 0.4s ease, border-color 0.4s ease;
     overflow: hidden;
+    width: 90%;
+}
+
+/* The Anti-Grid Layout Offset */
+.deal-card.offset-right {
+    margin-left: auto;
 }
 
 .deal-card:hover {
-    transform: translateY(-2px);
-    background: rgba(255, 255, 255, 0.05);
+    background: rgba(255, 255, 255, 0.08);
 }
 
-/* Active Day logic to be applied by JS */
 .deal-card.active-day {
-    border-color: var(--white);
-    background: rgba(30, 90, 53, 0.4); /* subtle forest glow */
+    border-color: rgba(255,255,255,0.4);
+    background: rgba(30, 90, 53, 0.5);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.2);
 }
 
 .deal-card.active-day::before {
@@ -132,20 +222,20 @@ body::before {
     left: 0;
     top: 0;
     height: 100%;
-    width: 4px;
+    width: 6px;
     background-color: var(--gold);
 }
 
 .pill-badge {
     display: inline-block;
-    padding: 0.25rem 0.75rem;
+    padding: 0.3rem 0.8rem;
     border: 1px solid var(--white);
     border-radius: 100px;
-    font-size: 0.7rem;
-    font-weight: 600;
-    letter-spacing: 0.1em;
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.15em;
     color: var(--white);
-    margin-bottom: 1rem;
+    margin-bottom: 1.5rem;
 }
 
 .yellow-badge {
@@ -156,15 +246,16 @@ body::before {
 
 .deal-title {
     font-family: 'Playfair Display', serif;
-    font-size: 1.5rem;
+    font-size: 2rem;
     font-weight: 700;
-    margin-bottom: 0.25rem;
+    margin-bottom: 0.5rem;
+    line-height: 1.1;
 }
 
 .deal-desc {
-    font-size: 0.95rem;
+    font-size: 1.05rem;
     color: rgba(255, 255, 255, 0.85);
-    margin-bottom: 1.5rem;
+    margin-bottom: 2rem;
 }
 
 .deal-cta {
@@ -172,12 +263,12 @@ body::before {
     font-size: 0.85rem;
     font-weight: 600;
     text-transform: uppercase;
-    letter-spacing: 0.05em;
+    letter-spacing: 0.1em;
     color: var(--white);
     text-decoration: none;
     border-bottom: 1px solid rgba(255, 255, 255, 0.3);
-    padding-bottom: 2px;
-    transition: border-color 0.2s ease;
+    padding-bottom: 4px;
+    transition: border-color 0.3s ease;
 }
 
 .deal-cta:hover {
@@ -187,10 +278,10 @@ body::before {
 .solid-cta {
     background-color: var(--white);
     color: var(--navy);
-    padding: 0.75rem 1.5rem;
+    padding: 1rem 2rem;
     border-radius: 4px;
     border: none;
-    transition: background-color 0.2s ease, color 0.2s ease;
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .solid-cta:hover {
@@ -198,29 +289,30 @@ body::before {
     border-color: transparent;
 }
 
-/* Special High Value Highlight Card */
 .highlight-card {
-    background: rgba(10, 29, 55, 0.8);
-    border-color: var(--gold);
-    margin-top: 1rem;
+    background: rgba(10, 29, 55, 0.85);
+    border-color: rgba(248, 195, 0, 0.3);
+    margin-top: 2rem;
+    width: 100%; /* Break the anti-grid to center and ground the bottom */
 }
 
 .bulk-tiers {
     list-style: none;
-    margin-bottom: 1.5rem;
+    margin-bottom: 2rem;
 }
 
 .bulk-tiers li {
     display: flex;
     justify-content: space-between;
-    font-size: 0.95rem;
+    font-size: 1.1rem;
     border-bottom: 1px dashed rgba(255, 255, 255, 0.2);
-    padding: 0.5rem 0;
+    padding: 0.8rem 0;
 }
 
 .bulk-tiers li span {
     font-weight: 700;
     color: var(--gold);
+    letter-spacing: 0.05em;
 }
 
 .bulk-tiers li:last-child {
@@ -229,17 +321,38 @@ body::before {
 
 .footer {
     text-align: center;
-    margin-top: 4rem;
-    padding-top: 2rem;
+    margin-top: 6rem;
+    padding-top: 3rem;
     border-top: 1px solid var(--border);
-    font-size: 0.8rem;
+    font-size: 0.85rem;
     color: rgba(255, 255, 255, 0.5);
 }
 
 .footer .tagline {
     font-family: 'Playfair Display', serif;
-    font-size: 1.2rem;
+    font-size: 1.4rem;
     color: var(--white);
-    margin-top: 0.5rem;
+    margin-top: 1rem;
     font-style: italic;
+}
+
+/* Mobile Fallbacks & Performance Overrides */
+@media (max-width: 768px) {
+    .content-wrapper {
+        padding: 2rem 1rem 4rem;
+    }
+    .deal-card {
+        width: 100%; /* Remove anti-grid offset on mobile */
+        padding: 2rem 1.5rem;
+    }
+    .hero-text {
+        font-size: 2.2rem;
+    }
+    .deal-title {
+        font-size: 1.6rem;
+    }
+    /* Disable JS hover glow effects on touch */
+    .bg-glow {
+        display: none;
+    }
 }

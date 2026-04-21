@@ -11,53 +11,64 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800;900&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="assets/style.css">
 </head>
-<body>
-    <div class="massive-typography" aria-hidden="true">DEALS</div>
+<body class="is-loading">
+    
+    <!-- Custom Interactive Cursor -->
+    <div class="cursor-dot"></div>
+    <div class="cursor-ring"></div>
+
+    <!-- Mouse-Reactive Background Glow -->
+    <div class="bg-glow"></div>
+
+    <!-- Kinetic Typography -->
+    <div class="parallax-wrap">
+        <div class="massive-typography" data-parallax-speed="0.05">DEALS</div>
+    </div>
     
     <div class="content-wrapper">
-        <header class="masthead">
+        <header class="masthead js-reveal">
             <img src="assets/logo.png" alt="Bored N Buzzed Logo" class="brand-logo">
             <h1 class="hero-text">Celebrate the <em>Culture</em></h1>
             <p class="hero-subtext">Kirkland's finest. Secure your bag with today's drop.</p>
         </header>
 
         <main class="deals-grid">
-            <div class="deal-card" data-day="1">
+            <div class="deal-card js-reveal js-magnetic" data-day="1">
                 <div class="pill-badge">MONDAY</div>
                 <h2 class="deal-title">Munchie Monday</h2>
                 <p class="deal-desc">30% off edibles store-wide.</p>
                 <a href="https://borednbuzzed.com/shop/" class="deal-cta">Shop Menu</a>
             </div>
 
-            <div class="deal-card" data-day="2">
+            <div class="deal-card js-reveal js-magnetic offset-right" data-day="2">
                 <div class="pill-badge">TUESDAY</div>
                 <h2 class="deal-title">Top Shelf Tuesday</h2>
                 <p class="deal-desc">30% off any 3+ top shelf brands.</p>
                 <a href="https://borednbuzzed.com/shop/" class="deal-cta">Shop Menu</a>
             </div>
 
-            <div class="deal-card" data-day="3">
+            <div class="deal-card js-reveal js-magnetic" data-day="3">
                 <div class="pill-badge">WEDNESDAY</div>
                 <h2 class="deal-title">Wax Wednesday</h2>
                 <p class="deal-desc">30% off 3g+ concentrate.</p>
                 <a href="https://borednbuzzed.com/shop/" class="deal-cta">Shop Menu</a>
             </div>
 
-            <div class="deal-card" data-day="4">
+            <div class="deal-card js-reveal js-magnetic offset-right" data-day="4">
                 <div class="pill-badge">THURSDAY</div>
                 <h2 class="deal-title">Pre Rolled Thursday</h2>
                 <p class="deal-desc">30% off any 3 prerolls.</p>
                 <a href="https://borednbuzzed.com/shop/" class="deal-cta">Shop Menu</a>
             </div>
 
-            <div class="deal-card" data-day="5">
+            <div class="deal-card js-reveal js-magnetic" data-day="5">
                 <div class="pill-badge">FRIDAY</div>
                 <h2 class="deal-title">Flower Friday</h2>
                 <p class="deal-desc">30% off any 3+ flower products.</p>
                 <a href="https://borednbuzzed.com/shop/" class="deal-cta">Shop Menu</a>
             </div>
 
-            <div class="deal-card highlight-card">
+            <div class="deal-card highlight-card js-reveal js-magnetic offset-right">
                 <div class="pill-badge yellow-badge">WEEKEND SECURED</div>
                 <h2 class="deal-title">Bulk Up Weekend</h2>
                 <ul class="bulk-tiers">
@@ -69,7 +80,7 @@
             </div>
         </main>
         
-        <footer class="footer">
+        <footer class="footer js-reveal">
             <p>11516 124th Ave NE, Kirkland WA 98033</p>
             <p class="tagline">Stay One Puff Ahead.</p>
         </footer>

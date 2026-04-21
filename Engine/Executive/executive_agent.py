@@ -54,7 +54,7 @@ class ExecutiveAgent:
         print("[*] Processing with Claude...")
         
         response = self.client.messages.create(
-            model="claude-3-7-sonnet-20250219",
+            model="claude-sonnet-4-6",
             max_tokens=4000,
             system=self.system_prompt,
             tools=[SAVE_TO_OUTPUT_TOOL],
